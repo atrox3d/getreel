@@ -1,0 +1,58 @@
+<head>
+  <title>GetReel - Applicant Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="container">
+  {{> loginButtons}}
+  <h1>GetReel</h1>
+  <h2>Applicant Form</h2>
+
+  <form>
+    <div class="form-group">
+      <label for="firstname">Firstname</label>
+      <input id="firstname" type="text" name="firstname" class="form-control" placeholder="e.g.: John" />
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Lastname</label>
+      <input id="lastname" type="text" name="lastname" class="form-control" placeholder="e.g. Smith" />
+    </div>
+
+    <div class="form-group">
+      <label for="job">Job position</label>
+      <select id="job" name="job" class="form-control">
+        {{#each jobs}}
+        <option value="{{_id}}">{{title}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="resume">Resume</label>
+      <input id="resume" type="file" name="resume" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="showreel">Showreel</label>
+      <script>console.log(Modernizr);</script>
+      {{#if webrtc}}
+      <video autoplay></video>
+      <script>console.log('Yay!')</script>
+      {{else}}
+      <label>
+        <input type="radio" name="video-type" value="file" checked> Upload file
+      </label>
+      <label>
+        <input type="radio" name="video-type" value="link"> Link to video
+      </label>
+      <input id="videofile" type="file" name="videofile" class="form-control {{#unless showUpload}}hidden{{/unless}}" accept="video/*;capture=camcorder" />
+      <input id="videolink" type="url" name="videolink" class="{{#if showUpload}}hidden{{/if}}" placeholder="e.g. https://youtu.be/QH2-TGUlwu4" />
+      {{/if}}
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</body>
