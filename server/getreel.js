@@ -1,6 +1,8 @@
 Jobs = new Mongo.Collection('jobs'); //both on client and server
 Applications = new Mongo.Collection('applications');
 
+// added repoz channel
+
 Meteor.startup(function() {
     // console.log('Jobs.remove({})');
     // Jobs.remove({});
