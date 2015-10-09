@@ -1,7 +1,18 @@
 Jobs = new Mongo.Collection('jobs'); //both on client and server
 
 Template.body.helpers({
-    webrtc: Modernizr.getUserMedia,
+    // webrtc: Modernizr.getUserMedia,
+    // webrtc: function() {
+    //     console.log('Modernizr from helper:', Modernizr);
+    //     console.log('Modernizr.getusermedia from helper:', Modernizr.getusermedia);
+    //     return Modernizr.getusermedia!=null
+    // },
+
+    webrtc: function () {
+            return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    },
+
     showUpload: function() {
         return Session.get('showUpload');
     }

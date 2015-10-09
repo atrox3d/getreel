@@ -24,5 +24,6 @@ accounts-facebook
 accounts-twitter
 accounts-google
 pauli:accounts-linkedin
-mrt:modernizr-meteor
+#mrt:modernizr-meteor
 mizzao:bootstrap-3
+cwaring:modernizr

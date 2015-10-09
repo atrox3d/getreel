@@ -35,10 +35,27 @@
 
     <div class="form-group">
       <label for="showreel">Showreel</label>
-      <script>console.log('Modernizr', Modernizr);</script>
+      <script>console.log('Modernizr from <script>', Modernizr);</script>
+      <div>webrtc : {{webrtc}}</div>
       {{#if webrtc}}
       <video autoplay></video>
       <script>console.log('Yay!')</script>
+      <script>
+      navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+
+        var video = document.querySelector('video');
+
+        if (navigator.getUserMedia) {
+          navigator.getUserMedia({audio: false, video: true}, function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+        }, function(){console.log("error");});
+        } else {
+          video.src = 'somevideo.webm'; // fallback.
+        }
+      </script>
       {{else}}
       <label>
         <input type="radio" name="video-type" value="file" checked> Upload file
